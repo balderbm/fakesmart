@@ -96,7 +96,7 @@ def astar(maze, start, end):
                     continue
 
             # Create the f, g, and h values
-            child.g = current_node.g + 1
+            child.g = current_node.g + maze[child.position[0]][child.position[1]]
             child.h = manhatten(child.position,end_node.position) 
             child.f = child.g + child.h
 
@@ -107,17 +107,3 @@ def astar(maze, start, end):
 
             # Add the child to the open list
             open_list.append(child)
-def main():
-    #start=(27,18)
-    #end=(40,36)
-    mapobj=Map_Obj(task=3)
-    start=tuple(mapobj.start_pos)
-    end=tuple(mapobj.goal_pos)
-    path = astar(mapobj.int_map, start, end)
-    for p in path:
-        mapobj.replace_map_values(p,0,end)
-    mapobj.show_map()
-    print(path)
-main()
-
-
