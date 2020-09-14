@@ -1,12 +1,13 @@
 """ 
 Code is taken from: https://medium.com/@nicholas.w.swift/easy-a-star-pathfinding-7e6689c7f7b2
-ALl comments are changed by me and is my understanding of the code. Some changes has been done to accomadate the spesific task we have been given here.
+All comments are changed by me and is my understanding of the code. Some changes has been done to accomadate the spesific task we have been given here.
 
 
 
 """
 
 from Map import Map_Obj
+
 
 class Node():
     """A node class for A* Pathfinding"""
@@ -25,9 +26,9 @@ class Node():
 def manhatten(p1,p2): #use the manhatten distance as the h function. 
     return abs(p1[0]-p2[0])+abs(p1[1]-p2[1])
 
-def astar(maze, start, end):
+def astar(mapobj, start, end, task):
     """Returns a list of tuples as a path from the given start to the given end in the given maze"""
-
+    maze = mapobj.int_map
     # Create start and end node
     start_node = Node(None, start)
     start_node.g = start_node.h = start_node.f = 0
@@ -63,7 +64,7 @@ def astar(maze, start, end):
             while current is not None:
                 path.append(current.position)
                 current = current.parent
-            return path[::-1] # Return path from the goal. 
+            return path[::-1], end_node.position # Return path from the goal. 
 
         # Generate children
         children = []
@@ -107,3 +108,10 @@ def astar(maze, start, end):
 
             # Add the child to the open list
             open_list.append(child)
+
+        # Moving goal for task 5
+        if task == 5:
+            mapobj.tick()
+            end = tuple(mapobj.goal_pos)
+            end_node = Node(None, end)
+            end_node.g = end_node.h = end_node.f = 0
