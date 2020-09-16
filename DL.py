@@ -4,7 +4,6 @@ Changes has been done to accomadate the spesific task we have been given here.
 
 
 
-
 """
 
 from Map import Map_Obj
@@ -30,6 +29,7 @@ def manhatten(p1,p2): #use the manhatten distance as the h function.
 def astar(mapobj, start, end, task):
     """Returns a list of tuples as a path from the given start to the given end in the given maze"""
     maze = mapobj.int_map
+    goal_path = []
     # Create start and end node
     start_node = Node(None, start)
     start_node.g = start_node.h = start_node.f = 0
@@ -65,7 +65,7 @@ def astar(mapobj, start, end, task):
             while current is not None:
                 path.append(current.position)
                 current = current.parent
-            return path[::-1], end_node.position # Return path from the goal. 
+            return path[::-1], end_node.position, goal_path # Return path from the goal. 
 
         # Generate children
         children = []
@@ -114,5 +114,9 @@ def astar(mapobj, start, end, task):
         if task == 5:
             mapobj.tick()
             end = tuple(mapobj.goal_pos)
+            if not goal_path:
+                goal_path.append(end)
+            elif goal_path[-1] != end:
+                goal_path.append(end)
             end_node = Node(None, end)
             end_node.g = end_node.h = end_node.f = 0

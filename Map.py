@@ -145,6 +145,8 @@ class Map_Obj():
             str_value = ' ; '
         elif value==0:
             str_value= ' q '
+        elif value==-2:
+            str_value= ' l '
         else:
             str_value = str(value)
         self.int_map[pos[0]][pos[1]] = value
@@ -220,7 +222,7 @@ class Map_Obj():
         # Define what colors to give to different values of the string map (undefined values will remain yellow, this is
         # how the yellow path is painted)
         colors = {' # ': (255, 0, 0), ' . ': (215, 215, 215), ' , ': (166, 166, 166), ' : ': (96, 96, 96),
-                  ' ; ': (36, 36, 36), ' S ': (255, 0, 255), ' G ': (0, 128, 255),' q ':(50,205,50)}
+                  ' ; ': (36, 36, 36), ' S ': (255, 0, 255), ' G ': (0, 128, 255),' q ':(50,205,50),' l ':(51,51,153)}
         # Go through image and set pixel color for every position
         for y in range(height):
             for x in range(width):
