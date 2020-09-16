@@ -1,6 +1,7 @@
 """ 
 Code is taken from: https://medium.com/@nicholas.w.swift/easy-a-star-pathfinding-7e6689c7f7b2
-All comments are changed by me and is my understanding of the code. Some changes has been done to accomadate the spesific task we have been given here.
+Changes has been done to accomadate the spesific task we have been given here.
+
 
 
 
@@ -39,10 +40,10 @@ def astar(mapobj, start, end, task):
     open_list = []
     closed_list = []
 
-    # Add the start node
+    # Add start node to the list of open nodes. 
     open_list.append(start_node)
 
-    # Loop until you find the end
+    # While loop until one find the end
     while len(open_list) > 0:
 
         # Get the current node
