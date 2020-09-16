@@ -13,7 +13,7 @@ def main():
 
         #Calles astar-algorithm
         path, end, goal_path= astar(mapobj, start, end, task)
-        print(goal_path)
+        
         #Draws path on map
         for p in path:
             mapobj.replace_map_values(p,0,end)
